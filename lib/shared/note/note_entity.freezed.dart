@@ -23,7 +23,7 @@ mixin _$NoteEntity {
   String get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String get content => throw _privateConstructorUsedError;
-  String get dateCreated => throw _privateConstructorUsedError;
+  DateTime get dateCreated => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,7 +36,7 @@ abstract class $NoteEntityCopyWith<$Res> {
   factory $NoteEntityCopyWith(
           NoteEntity value, $Res Function(NoteEntity) then) =
       _$NoteEntityCopyWithImpl<$Res>;
-  $Res call({String id, String title, String content, String dateCreated});
+  $Res call({String id, String title, String content, DateTime dateCreated});
 }
 
 /// @nodoc
@@ -70,7 +70,7 @@ class _$NoteEntityCopyWithImpl<$Res> implements $NoteEntityCopyWith<$Res> {
       dateCreated: dateCreated == freezed
           ? _value.dateCreated
           : dateCreated // ignore: cast_nullable_to_non_nullable
-              as String,
+              as DateTime,
     ));
   }
 }
@@ -82,7 +82,7 @@ abstract class _$$_NoteEntityCopyWith<$Res>
           _$_NoteEntity value, $Res Function(_$_NoteEntity) then) =
       __$$_NoteEntityCopyWithImpl<$Res>;
   @override
-  $Res call({String id, String title, String content, String dateCreated});
+  $Res call({String id, String title, String content, DateTime dateCreated});
 }
 
 /// @nodoc
@@ -118,7 +118,7 @@ class __$$_NoteEntityCopyWithImpl<$Res> extends _$NoteEntityCopyWithImpl<$Res>
       dateCreated: dateCreated == freezed
           ? _value.dateCreated
           : dateCreated // ignore: cast_nullable_to_non_nullable
-              as String,
+              as DateTime,
     ));
   }
 }
@@ -144,7 +144,7 @@ class _$_NoteEntity extends _NoteEntity {
   @override
   final String content;
   @override
-  final String dateCreated;
+  final DateTime dateCreated;
 
   @override
   String toString() {
@@ -190,7 +190,7 @@ abstract class _NoteEntity extends NoteEntity {
       {required final String id,
       required final String title,
       required final String content,
-      required final String dateCreated}) = _$_NoteEntity;
+      required final DateTime dateCreated}) = _$_NoteEntity;
   const _NoteEntity._() : super._();
 
   factory _NoteEntity.fromJson(Map<String, dynamic> json) =
@@ -203,7 +203,7 @@ abstract class _NoteEntity extends NoteEntity {
   @override
   String get content;
   @override
-  String get dateCreated;
+  DateTime get dateCreated;
   @override
   @JsonKey(ignore: true)
   _$$_NoteEntityCopyWith<_$_NoteEntity> get copyWith =>

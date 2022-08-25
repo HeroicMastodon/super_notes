@@ -15,7 +15,7 @@ class NoteEntity with _$NoteEntity {
     required String id,
     required String title,
     required String content,
-    required String dateCreated,
+    required DateTime dateCreated,
   }) = _NoteEntity;
 
   factory NoteEntity.fromJson(Map<String, dynamic> json) =>
