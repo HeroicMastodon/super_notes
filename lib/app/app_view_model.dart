@@ -1,4 +1,5 @@
 import 'package:mobx/mobx.dart';
+import 'package:notes/editor/editor_view_model.dart';
 import 'package:notes/shared/note/note.dart';
 
 part 'app_view_model.g.dart';
@@ -20,7 +21,7 @@ abstract class AppViewModelBase with Store {
   String get title => _selectedNote?.title ?? "Notes";
 
   @action
-  void selectNote(String? id) {
+  Future<void> selectNote(String? id) async {
     _selectedNoteId = id;
   }
 }

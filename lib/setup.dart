@@ -1,5 +1,7 @@
 import 'package:get_it/get_it.dart';
 import 'package:notes/shared/commander/commander.dart';
+import 'package:notes/shared/commander/commands/handlers/note_command_handlers.dart';
+import 'package:notes/shared/commander/commands/note_commands.dart';
 import 'package:notes/shared/queries/notes_queries.dart';
 import 'package:notes/shared/repository/notes_repository.dart';
 import 'package:notes/shared/store/note_store.dart';
@@ -16,7 +18,7 @@ setup() async {
   registerSingleton<NotesRepository>(NotesSembastRepository());
   registerSingleton(NoteStore());
   registerSingleton(NotesQueries());
-  
+
   _commands();
 }
 
@@ -30,7 +32,11 @@ Future _sembast() async {
 }
 
 void _commands() {
-  final commander = NoteCommander();
+  final commander = CommanderBuilder()
+      .addGroup(CommandHandlerGroup<CreateNote>([createNoteHandler]))
+      .addGroup(CommandHandlerGroup<UpdateNote>([updateNoteHandler]))
+      .addGroup(CommandHandlerGroup<DeleteNote>([deleteNoteHandler]))
+      .finalize();
 
   registerSingleton(commander);
 }

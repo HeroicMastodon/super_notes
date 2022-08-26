@@ -16,8 +16,9 @@ abstract class NoteStoreBase with Store {
   @computed
   UnmodifiableListView<Note> get notes => UnmodifiableListView(notes);
 
-  Note getNoteById(String id) {
-    return _notes.firstWhere((e) => e.id == id, orElse: () => Note(id));
+  Note? getNoteById(String id) {
+    final index = _notes.indexWhere((e) => e.id == id);
+    return index < 0 ? null : _notes[index];
   }
 
   @action
