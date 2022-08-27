@@ -3,20 +3,21 @@ import 'package:notes/setup.dart';
 import 'package:notes/shared/commander/commander.dart';
 import 'package:notes/shared/commander/commands/note_commands.dart';
 import 'package:notes/shared/note/note.dart';
-import 'package:notes/shared/queries/notes_queries.dart';
+import 'package:notes/shared/store/note_store.dart';
 
 part 'editor_view_model.g.dart';
 
 class EditorViewModel = EditorViewModelBase with _$EditorViewModel;
 
 abstract class EditorViewModelBase with Store {
-  EditorViewModelBase();
+  EditorViewModelBase(String id): _id = id;
 
+  final String _id;
   final _commander = inject<Commander>();
-  final _queries = inject<NotesQueries>();
+  final _store = inject<NoteStore>();
 
-  @readonly
-  Note? _note;
+  @computed
+  Note? get _note => _store.getNoteById(_id);
 
   @computed
   String get title => _note?.title ?? "";
@@ -43,10 +44,5 @@ abstract class EditorViewModelBase with Store {
       content: newContent,
     );
     _commander.order(command);
-  }
-
-  @action
-  Future<void> init(String id) async {
-    _note = await _queries.getNoteById(id);
   }
 }

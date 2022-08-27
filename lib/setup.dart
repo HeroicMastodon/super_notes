@@ -12,12 +12,12 @@ import 'package:sembast/sembast_io.dart';
 final registerSingleton = GetIt.I.registerSingleton;
 final inject = GetIt.I.get;
 
-setup() async {
+Future setup() async {
   await _sembast();
 
   registerSingleton<NotesRepository>(NotesSembastRepository());
-  registerSingleton(NoteStore());
   registerSingleton(NotesQueries());
+  registerSingleton(NoteStore()..init());
 
   _commands();
 }

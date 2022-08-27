@@ -1,14 +1,8 @@
-import 'package:notes/shared/commander/commander.dart';
-import 'package:notes/shared/commander/commands/note_commands.dart';
+import 'package:flutter/material.dart';
+import 'package:notes/app/app.dart';
+import 'package:notes/setup.dart';
 
 void main() async {
-  final commander = CommanderBuilder()
-      .addGroup(CommandHandlerGroup<CreateNote>([
-        (command) => print(command.title),
-      ]))
-      .finalize();
-
-  print("sending");
-  // await commander.send(const CreateNote("hello from two", null));
-  print("sent");
+  await setup();
+  runApp(NotesApp());
 }
