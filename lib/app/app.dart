@@ -14,7 +14,13 @@ class NotesApp extends HookWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Notes',
-      theme: ThemeData.dark(),
+      theme: ThemeData.dark().copyWith(
+        useMaterial3: true,
+        colorScheme: ThemeData.dark().colorScheme.copyWith(
+              secondary: Colors.blueAccent,
+              onSecondary: Colors.white,
+            ),
+      ),
       home: Scaffold(
         appBar: AppBar(
           title: Observer(builder: (context) {
@@ -46,11 +52,23 @@ class NotesApp extends HookWidget {
                     ),
               if (vm.selectedNoteId != null)
                 Expanded(
-                  child: EditorView(vm.selectedNoteId!),
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    decoration: BoxDecoration(
+                      border: Border(
+                        left: BorderSide(
+                          color: Theme.of(context).colorScheme.surface,
+                          width: 4,
+                        ),
+                      ),
+                    ),
+                    child: EditorView(vm.selectedNoteId!),
+                  ),
                 ),
             ],
           );
         }),
+        floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
         floatingActionButton: FloatingActionButton(
           onPressed: vm.createNote,
           child: const Icon(Icons.add),
