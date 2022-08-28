@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:notes/editor/editor_view_model.dart';
-import 'package:super_editor/super_editor.dart';
 
 class EditorView extends HookWidget {
   EditorView(this.noteId, {super.key}) : vm = EditorViewModel(noteId);
@@ -21,7 +20,6 @@ class EditorView extends HookWidget {
               children: [
                 Expanded(
                   child: TextFormField(
-                    key: Key(vm.title),
                     decoration: const InputDecoration(hintText: "Title"),
                     style: const TextStyle(fontSize: 16),
                     initialValue: vm.title,
@@ -68,7 +66,7 @@ class EditorView extends HookWidget {
               ),
             ],
           ),
-        )
+        ),
       ],
     );
   }

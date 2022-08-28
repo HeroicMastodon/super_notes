@@ -38,7 +38,7 @@ abstract class NoteViewModelBase with Store {
     return formatted;
   }
 
-  void onDelete() {
+  void onDelete() async {
     if (_note != null) _commander.order(DeleteNote(id: _note!.id));
   }
 }

@@ -11,7 +11,7 @@ class NoteView extends HookWidget {
   }) : vm = NoteViewModel(id);
 
   final String id;
-  final void Function(String id) onNoteSelected;
+  final void Function(String? id) onNoteSelected;
   final NoteViewModel vm;
 
   @override
@@ -26,7 +26,10 @@ class NoteView extends HookWidget {
       }),
       trailing: IconButton(
         icon: const Icon(Icons.delete),
-        onPressed: vm.onDelete,
+        onPressed: () {
+          onNoteSelected(null);
+          vm.onDelete();
+        },
       ),
     );
   }

@@ -9,13 +9,20 @@ class NoteCommand with _$NoteCommand {
     String? content,
   }) = CreateNote;
 
-  const factory NoteCommand.updateNote({
-    required String id,
-    required String title,
-    required String? content,
-  }) = UpdateNote;
-
   const factory NoteCommand.deleteNote({
     required String id,
   }) = DeleteNote;
+}
+
+@freezed
+class UpdateNote with _$UpdateNote {
+  const factory UpdateNote.title({
+    required String id,
+    required String title,
+  }) = _UpdateNoteTitle;
+
+  const factory UpdateNote.content({
+    required String id,
+    required String? content,
+  }) = _UpdateNoteContent;
 }

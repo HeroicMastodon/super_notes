@@ -62,7 +62,7 @@ class NotesApp extends HookWidget {
                         ),
                       ),
                     ),
-                    child: EditorView(vm.selectedNoteId!),
+                    child: EditorView(vm.selectedNoteId!, key: Key(vm.selectedNoteId!),),
                   ),
                 ),
             ],

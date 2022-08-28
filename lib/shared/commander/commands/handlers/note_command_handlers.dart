@@ -10,7 +10,7 @@ final _codec = NoteCodec();
 final _repo = inject<NotesRepository>();
 final _store = inject<NoteStore>();
 
-void createNoteHandler(CreateNote command) async  {
+void createNoteHandler(CreateNote command) async {
   final note = Note(
     generateId(),
     command.title,
@@ -23,13 +23,24 @@ void createNoteHandler(CreateNote command) async  {
 }
 
 void updateNoteHandler(UpdateNote command) async {
-  final note = _store.getNoteById(command.id);
-  if (note == null) return;
+  command.when(
+    title: (id, title) async {
+      final note = _store.getNoteById(id);
+      if (note == null) return;
 
-  note.title = command.title;
-  note.content = command.content ?? note.content;
+      final update = await _repo.changeNoteTitle(id, title);
+      if (update == null) return;
+      note.title = update.title;
+    },
+    content: (id, content) async {
+      final note = _store.getNoteById(id);
+      if (note == null) return;
 
-  await _repo.upsertNote(_codec.encode(note));
+      final update = await _repo.changeNoteContent(id, content);
+      if (update == null) return;
+      note.content = update.content;
+    },
+  );
 }
 
 void deleteNoteHandler(DeleteNote command) async {

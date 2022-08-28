@@ -10,7 +10,7 @@ class NotesListView extends HookWidget {
     required this.onNoteSelected,
   });
 
-  final void Function(String id) onNoteSelected;
+  final void Function(String? id) onNoteSelected;
   final NotesListViewModel viewModel = NotesListViewModel();
 
   @override

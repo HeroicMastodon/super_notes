@@ -16,6 +16,7 @@ class Commander {
   final Map<Type, CommandHandlerGroup> _commandToHandlers;
 
   Future<void> order<SendType>(SendType command) async {
+    print("ordering");
     final group = _commandToHandlers[SendType];
     group?.send(command);
   }
