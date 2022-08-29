@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:notes/editor/content_editor.dart';
 import 'package:notes/editor/editor_view_model.dart';
 
 class EditorView extends HookWidget {
@@ -30,44 +31,12 @@ class EditorView extends HookWidget {
             ),
           );
         }),
-        Container(
-          decoration: BoxDecoration(
-            color: Theme.of(context).colorScheme.surface,
-            borderRadius: BorderRadius.circular(8),
-          ),
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: Row(
-            children: [
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8.0),
-                  child: Container(
-                    padding: const EdgeInsets.only(left: 8),
-                    decoration: const BoxDecoration(
-                      border: Border(
-                        left: BorderSide(color: Colors.grey, width: 4),
-                      ),
-                    ),
-                    child: TextFormField(
-                      decoration: const InputDecoration(
-                        // contentPadding: EdgeInsets.zero,
-                        isDense: true,
-
-                        border: InputBorder.none,
-                        hintText: "Content",
-                      ),
-                      maxLines: null,
-                      key: Key(vm.content),
-                      initialValue: vm.content,
-                      onChanged: vm.changeContent,
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
+        ContentEditor(
+          initialValue: vm.content,
+          onChanged: vm.changeContent,
         ),
       ],
     );
   }
 }
+
