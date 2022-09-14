@@ -4,25 +4,29 @@ import 'package:notes/shared/widgets/rich_text/document_wrapper.dart';
 import 'package:super_editor/super_editor.dart';
 import 'package:super_editor_markdown/super_editor_markdown.dart';
 
-class RichText extends HookWidget {
-  const RichText({Key? key, this.initialValue, this.onChanged}) : super(key: key);
+class SuperRichText extends HookWidget {
+  const SuperRichText({Key? key, this.initialValue, this.onChanged})
+      : super(key: key);
 
   final String? initialValue;
-  final void Function(String? value)? onChanged;
+  final void Function(String value)? onChanged;
 
   @override
   Widget build(BuildContext context) {
-    final editor = SuperEditorWrapper.fromMarkdown('');
+    final wrapper =
+        useState(SuperEditorWrapper.fromMarkdown(initialValue, listener: onChanged)).value;
 
     // TODO: Consider making a useDispose() hook
     useEffect(() {
       return () {
-        editor.dispose();
+        wrapper.dispose();
       };
     });
 
-    // TODO: implement build
-    throw UnimplementedError();
+    return SuperEditor(
+      editor: wrapper.editor,
+      composer: wrapper.composer,
+    );
   }
 
   MutableDocument createDocument() {

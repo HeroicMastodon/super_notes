@@ -31,9 +31,12 @@ class EditorView extends HookWidget {
             ),
           );
         }),
-        ContentEditor(
-          initialValue: vm.content,
-          onChanged: vm.changeContent,
+        Expanded(
+          child: ContentEditor(
+            key: Key(noteId),
+            initialValue: vm.content,
+            onChanged: vm.changeContent,
+          ),
         ),
       ],
     );

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:notes/shared/widgets/rich_text/rich_text.dart';
 
 class ContentEditor extends StatelessWidget {
   const ContentEditor({
@@ -20,11 +21,16 @@ class ContentEditor extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Row(
         children: [
-          Expanded(
-            child: TextArea(
-              initialValue: initialValue,
-              onChanged: onChanged,
-            ),
+          // Expanded(
+          //   child: TextArea(
+          //     initialValue: initialValue,
+          //     onChanged: onChanged,
+          //   ),
+          // ),
+          SuperRichText(
+            key: key,
+            initialValue: initialValue,
+            onChanged: onChanged,
           ),
         ],
       ),

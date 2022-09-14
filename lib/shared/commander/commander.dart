@@ -11,12 +11,12 @@ class CommanderBuilder {
   }
 }
 
+// TODO Separate events and commands. Commands have one consumer, events many
 class Commander {
   Commander(this._commandToHandlers);
   final Map<Type, CommandHandlerGroup> _commandToHandlers;
 
   Future<void> order<SendType>(SendType command) async {
-    print("ordering");
     final group = _commandToHandlers[SendType];
     group?.send(command);
   }
