@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:super_editor/super_editor.dart';
 
+const taskAttribution = NamedAttribution("task");
 /// This file includes everything needed to add the concept of a task
 /// to Super Editor. This includes:
 ///
@@ -26,7 +27,7 @@ class TaskNode extends TextNode {
         super(id: id, text: text, metadata: metadata) {
     // Set a block type so that TaskNode's can be styled by
     // StyleRule's.
-    putMetadataValue("blockType", const NamedAttribution("task"));
+    putMetadataValue("blockType", taskAttribution);
   }
 
   /// Whether this task is complete.

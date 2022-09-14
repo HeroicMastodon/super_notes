@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:notes/shared/debounce/debounce.dart';
+import 'package:notes/shared/hooks/disposable.dart';
 import 'package:notes/shared/widgets/rich_text/attribution_tools.dart';
 import 'package:notes/shared/widgets/rich_text/task_node.dart';
 import 'package:super_editor/super_editor.dart';
@@ -15,7 +16,7 @@ const _codeBlockLeader = r'(```)';
 
 // TODO Look at interactive demo for implementing easy copy and paste
 
-class SuperEditorWrapper {
+class SuperEditorWrapper implements Disposable {
   SuperEditorWrapper({
     required this.document,
     required this.editor,
